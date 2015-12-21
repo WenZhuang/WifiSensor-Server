@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="js/jquery-2.1.4.js"></script>
+<script>
+$(document).ready(function(){
+  $("button").click(function(){
+    $.ajax({
+        type:"GET",
+        url:"/WifiSensor/servlet/WifiServlet",
+        dataType:"json",
+        success:function(data){
+            $("#data").html(new Date(data.inTime*1000).toLocaleString());
+        },
+        error:function(jqXHR){
+             $("#data").html("·¢Éú´íÎó:"+jqXHR.status);
+        }
+    });
+  });
+});
+</script>
+</head>
+<body>
+
+<button>GET</button>
+<div id="data"></div>
+
+</body>
+</html>
